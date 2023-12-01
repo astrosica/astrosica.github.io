@@ -1,0 +1,340 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jessica Campbell | Portfolio</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <a href="index.html"><h1><center>Jessica Campbell</center></h1></a>
+        <!-- headshot -->
+        <img src="images/headshot.png" alt="" align="center">
+
+        <p></p>
+
+        <!-- Headline -->
+        <p><big>Data Analyst </big><br>
+        SQL | Excel | Tableau | Python</p>
+        <hr>
+
+        <!-- Summary -->
+        <p>Former astronomer (BSc, PhD) from the University of Toronto with a strong background in statistical analysis and solving complex problems passionate about data analysis and visualization.</p>
+        
+        <!-- Contact -->
+        <p align="center"> 
+        <a href="https://www.linkedin.com/in/astrosica/"><img src="images/linkedin-icon.png" alt="" align="center" width="30"></a> &nbsp;&nbsp;&nbsp;
+        <a href="https://public.tableau.com/app/profile/astrosica"><img src="images/tableau-icon.png" alt="" align="center" width="30"></a> &nbsp;&nbsp;&nbsp;
+        <a href="https://github.com/astrosica"><img src="images/github-icon.png" alt="" align="center" width="30"></a> &nbsp;&nbsp;&nbsp;
+        <a href="mailto:jessicacampbell.astro@gmail.com"><img src="images/email-icon.png" alt="" align="center" width="30"></a>
+        </p>
+      </header>
+
+      <!-- Project #1 -->
+      <section>
+        <h1>Transportation Analytics Using SQL and Tableau</h1>
+
+        <p><img src="images/transportation-analytics/transportation-analytics-cover.png" alt="" align="center" width="100%"></p>
+
+        <!-- Introduction -->
+        <h2><a id="INTRODUCTION">Introduction</a></h2>
+
+        <p>I lived in Toronto for over a decade and heavily relied on the subway to get to and from the university. It was incredible to see just how many people relied on this mode of transportation and, better yet, also dealt with the frustation of frequent delays. Why have we stopped? How long will this take? Is it always like this? I decided to answer some of these questions. </p>
+
+        <!-- Objective -->
+        <h2>Objective</h2>
+
+          <p>For this project, I explored TTC subway delay data using SQL and Tableau to:</p>
+
+          <ol type="1">
+            <li> <a href="#DISTRIBUTION_OF_DELAYS"> Investigate the distribution of delay times across all subway stations.</a> </li>
+            <li> <a href="#MOST_DELAYS_LINES"> Identify which subway lines are impacted by the most delays and quantify their delay statistics.</a> </li>
+            <li> <a href="#MOST_DELAYS_STATIONS"> Identify which subway stations are responsible for the most delays and quantify their delay statistics.</a> </li>
+            <li> <a href="#MOST_DELAYS"> Identify the most frequent cause of delays.</a> </li>
+            <li> <a href="#TIME_DEPENDENCE"> Determine whether there is a time dependence in delays.</a> </li>
+            <li> <a href="#DELAY_CHANGE"> Determine whether the occurence of delays appears to be improving since last year.</a> </li>
+            <li> <a href="#SUMMARY_TABLE"> Provide a summary of results for all subway stations.</a> </li>
+            <li> <a href="#TABLEAU"> Design and develop an interactive Tableau dashboard illustrating key insights on the leading causes of delays.</a> </li>
+            <li> <a href="#RECOMMENDATIONS"> Provide a list of recommendations and areas for future work.</a> </li>
+          </ol>
+
+        <!-- Results -->
+        <h2>Key Insights</h2>
+
+        <ol type="1">
+            <li> The delay times across all subway stations range from 2 to 423 minutes, with the majority of subway delays being 7 minutes or less and most delays being only 3 minutes in length. </li>
+            <li> The Yonge-University Line (Line 1) had by far the most delays with 3,756 delays for a total delay time of 20.75 days. The average delay was 7.96 minutes, ranging from 2 to 360 minutes with a standard deviation of 12.23 minutes. </li>
+            <li> The subway stations with the highest number of delays are  Bloor, Eglinton, Finch, Kennedy, and Kipling Station. Kennedy Station was responsible for both the highest number of delays (310 delays) as well as the total delay time (2,553 minutes). </li>
+            <li> The most frequent cause of delays was a disorderly patron (code SUDP) with 5,584 total instances. The station responsible for the highest number of such codes was Bloor Station on Line 1. </li>
+            <li> There are some time dependencies in subway delays. In particular, most delays tend to occur at 8 AM, 5 PM, and 10 PM with a slight increase in delays on Wednesdays and during the month of March. </li>
+            <li> Most subway stations show a decrease in the total delay time between 2022 and 2023 over the period of Jan-Oct. In particular, Kennedy Station was responsible for the greatest total delay time and saw a substantial 38% decrease in delay times. </li>
+            <li> See the <a href="#SUMMARY_TABLE_FIG">summary table</a> for a summary of my results. </li>
+            <li> Patrons are the leading cause of delays (68% by number) followed by mechanical issues (14%). While patron-caused delays have shown a substantial 41-62% increase since last year, mechanical-caused delays have shown a 6-37% improvement. See my interactive dashboard <a href="https://public.tableau.com/app/profile/astrosica/viz/TTCDelays2022-2023/Dashboard">here</a>. </li>
+            <li> Special attention should be paid to unusually long delays at Finch and Eglington Stations as well as the increase in delays at St. George and Bloor Stations. The primary focus on delay improvements should bduring the morning and evening rush hours, on Wednesdays, and during March. As 'disorderly patrons' are the leading cause of delays, this description should be refined to help guide future research and improve campaigns directed at informing the public. </li>
+          </ol>
+
+        <!-- Data -->
+        <h2>Data</h2>
+
+        <p>I obtained on the TTC's subway delays from the <a href="https://open.toronto.ca/">City of Toronto's Open Data Portal</a> published by the TTC. The data contain two tables of delay information for the timeframes of Jan-Dec 2022 ('ttc-subway-delay-data-2022.xlsx') and Jan-Oct 2023 ('ttc-subway-delay-data-2023.xlsx') along with a table describing the delay codes ('ttc-subway-delay-codes.xlsx') and a readme file ('ttc-subway-delay-data-readme.xlsx') describing the data columns. I downloaded the data as XLSX (Excel) files, which I converted to Comma Separated Values (CSV) files using free online software and imported the CSV data into <a href="https://www.mysql.com/products/workbench/">MySQL Workbench</a>, a web environment for the MySQL database system. The 2022 and 2023 delay tables, delay code data, and readme data were imported into MySQL Workbench with the table names <code>delays_2022</code>, <code>delays_2023</code>, <code>delay_codes</code>, and <code>readme</code>, respectively. I chose to use the 2023 dataset as the basis of my analysis, which I will continue to update as more data becomes available. </p>
+
+        <!-- SQL Commands -->
+        <h2>SQL Commands</h2>
+
+        <p>The following summarizes my usage of SQL in this project:</p>
+
+        <p>
+          <u>Functions:</u><br>
+          <code>MIN | MAX | AVG | SUM | COUNT | RPAD | ROUND | TO_CHAR | CONCAT | ROW_NUMBER | FORMAT | TIME_FORMAT | DATE_FORMAT | HOUR | MONTH | MONTHNAME </code>
+        </p>
+
+        <p>
+          <u>Operators:</u><br>
+          <code>AND | IN | NOT IN | DESC | BETWEEN</code>
+        </p>
+
+        <p>
+          <u>Clauses:</u><br>
+          <code>DISTINCT | AS | WHERE | GROUP BY | ORDER BY | INNER JOIN | LIMIT</code>
+        </p>
+
+        <p>
+          <u>Statements:</u><br>
+          <code>WHEN | THEN | RENAME COLUMN</code>
+        </p>
+
+        <p>
+          <u>Commands:</u><br>
+          <code>DESC | CASE | SET </code>
+        </p>
+
+        <!-- Data Inspection and Cleaning -->
+        <h2> <a id = "CLEANING"> Data Inspection and Cleaning </a> </h2>
+
+            <p>Before I could proceed with my analysis, I first had to inspect and clean and prepare the data. This is an important step in data analysis where inaccurate, corrupt, and missing records are corrected or removed to ensure that only high-quality data are used. To begin, I inspected the table structures to see what columns and data types are present using the <code>DESC</code> command:</p>
+
+            <p><a href="images/transportation-analytics/desc_delays_code.png" target="_blank"><img src="images/transportation-analytics/desc_tables_code.png" alt="" align="center"></a></p>
+
+            <p>Both tables <code>delays_2022</code> and <code>delays_2023</code> have the following identical data structures:</p>
+
+            <p><a href="images/transportation-analytics/desc_delays.png" target="_blank"><img src="images/transportation-analytics/desc_delays.png" alt="" align="center"></a></p>
+
+            <p>while the <code>delay_codes</code> table has the following data structure:</p>
+
+            <p><a href="images/transportation-analytics/desc_delay_codes.png" target="_blank"><img src="images/transportation-analytics/desc_delay_codes.png" alt="" align="center"></a></p>
+
+            <p>I then inspected the <code>delay_readme</code> table to better understand the contents of each table, which provided descriptions and examples of each column:</p>
+
+            <p><a href="images/transportation-analytics/readme_code.png" target="_blank"><img src="images/transportation-analytics/readme_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/readme.png" target="_blank"><img src="images/transportation-analytics/readme.png" alt="" align="center"></a></p>
+
+            <p>With a better understanding of my data, I was ready to start cleaning! This was an extensive process that involved deleting records with incorrect/unknown subway stations, renaming station names and correcting typos for consistency, renaming subway lines for consistency, correcting improper/missing subway lines, deleting records with incorrect/unknown subway lines, deleting records with ambiguous or incorrect subway lines for interchange stations, and deleting records for the decommissioned SRT Line. For the details on how I did this, please see my GitHub repository.</p>
+
+            <p>With the data cleaned, I could finally begin the analysis!</p>
+
+        <!-- Analysis -->
+        <h2> <a id = "ANALYSIS"> Analysis </a> </h2>
+
+          <h3> <a id = "DISTRIBUTION_OF_DELAYS"> 1. Investigate the distribution of delay times across all subway stations. </a> </h3>
+
+            <p>I began by investigating the distribution of delay times across all stations to get a sense of what typical delays are like:</p>
+
+            <p><a href="images/transportation-analytics/histogram_code.png" target="_blank"><img src="images/transportation-analytics/histogram_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/histogram.png" target="_blank"><img src="images/transportation-analytics/histogram.png" alt="" align="center"></a></p>
+
+            <p>I grouped the data into bins of delay times (<code>Delay_in_Minutes</code>) using <code>COUNT</code> to find the number of delays in each bin (<code>Number_of_Delays</code>). To help interpret my results, I used <code>RPAD</code> to visualize the number of delays in each bin as a histogram (<code>Count</code>), where each asterisk represents 100 counts. While SQL is not necessarily a visualization software, the addition of this simple visualization tool helps to communicate a lot of information into something that is more easily digestible than a long column of numbers. I found that the delay times range from 2 to 423 minutes, with the majority of subway delays being 7 minutes or less and most delays being only 3 minutes long.</p>
+
+          <h3> <a id = "MOST_DELAYS_LINES"> 2. Identify which subway lines are impacted by the most delays and quantify their delay statistics. </a> </h3>
+
+          <p>Next, I identified which of the 3 subway lines are responsible for the most delays and quantified basic delay statistics for each line. The subway lines with the most delays could be categorized based on either the number of delays or the total delay times, so I investigated both.</p>
+
+            <p>I found the lines with the highest number of delays by grouping the data by subway line using <code>GROUP BY</code> and counting the total number of delays in each line using <code>COUNT</code>. Each TTC subway line is conveniently numbered, so I used <code>CASE</code> to add an additional column for the line number (<code>Line_Num</code>). I ordered the results by increasing number of delays, assigned row numbers using <code>ROW_NUMBER</code>, and used <code>RPAD</code> to visualize my results as a histogram:</p>
+
+            <p><a href="images/transportation-analytics/highest_num_delays_lines_2023_code.png" target="_blank"><img src="images/transportation-analytics/highest_num_delays_lines_2023_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/highest_num_delays_lines_2023.png" target="_blank"><img src="images/transportation-analytics/highest_num_delays_lines_2023.png" alt="" align="center"></a></p>
+
+            <p>I repeated this exercise to find the subway lines with the greatest total delay times where I added up the total delay time for each subway line using <code>SUM</code>, using <code>RPAD</code> to visualize my results:</p>
+
+            <p><a href="images/transportation-analytics/highest_sum_delays_lines_2023_code.png" target="_blank"><img src="images/transportation-analytics/highest_sum_delays_lines_2023_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/highest_sum_delays_lines_2023.png" target="_blank"><img src="images/transportation-analytics/highest_sum_delays_lines_2023.png" alt="" align="center"></a></p>
+
+            <p>These results show that Lines 1 and 2 by far had the greatest number of delays whether this is based on the number of delays or the total delay time. As noted in the <a href="#INTRODUCTION">Introduction</a>, Lines 1 and 2 happen to be the longest subway lines and are therefore likely to have the greatest number of riders. In future work, it would worthwhile to normalize the number of delays by the number of riders to provide a more unbiased representative of delays. </p>
+
+            <p>To quantify the basic delay statistics, I used <code>AVG</code>, <code>MIN</code>, <code>MAX</code>, and <code>STD</code> to obtain the average, minimum, maximum, and standard deviation delay time, respectively, for each subway line. Since the average and standard deviation are floating point numbers, I used <code>ROUND</code> inside of a <code>FORMAT</code> function to round these values to two decimal places. While a simple <code>ROUND</code> function would in principle do the trick, some rounded values had zeros in the hundredths decimal place that were dropped off resulting in only one decimal place being shown. To ensure that all rounded values had two decimal places, even those ending with a zero, I used <code>FORMAT</code> to ensure that all rounded values kept both decimal places for the sake of consistency:</p>
+
+            <p><a href="images/transportation-analytics/delay_stats_mostdelays_lines_2023_code.png" target="_blank"><img src="images/transportation-analytics/delay_stats_mostdelays_lines_2023_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/delay_stats_mostdelays_lines_2023.png" target="_blank"><img src="images/transportation-analytics/delay_stats_mostdelays_lines_2023.png" alt="" align="center"></a></p>
+
+            <p>For instance, the YU Line experienced the most delays in 2023 with 3,756 delays for a total delay time of 29,885 minutes, which translates to a total of 20.75 days. The average delay was 7.96 minutes, ranging from 2 to 360 minutes with a standard deviation of 12.23 minutes.</p>
+
+          <h3> <a id = "MOST_DELAYS_STATIONS"> 3. Identify which subway stations are responsible for the most delays and quantify their delay statistics. </a> </h3>
+
+            <p>Next, I investigated which stations are responsible for the most delays. I found the stations with the highest number of delays by grouping the data into their respective subway stations using <code>GROUP BY</code> and counted the total number of delays for each station using <code>COUNT</code>. As previously done, I used <code>CASE</code> to add a column for the subway line number <code>ROW_NUMBER</code> to clearly order the subway stations in order of increasing number of delays, and <code>RPAD</code> to visualize my results:</p>
+
+            <p><a href="images/transportation-analytics/highest_num_delays_stations_2023_code.png" target="_blank"><img src="images/transportation-analytics/highest_num_delays_stations_2023_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/highest_num_delays_stations_2023.png" target="_blank"><img src="images/transportation-analytics/highest_num_delays_stations_2023.png" alt="" align="center"></a></p>
+
+            <p>I repeated this exercise to find the subway stations with the greatest total delay times where I added up the total delay times for each station using <code>SUM</code>. Again I used <code>RPAD</code> to visualize my results:</p>
+
+            <p><a href="images/transportation-analytics/highest_sum_delays_stations_2023_code.png" target="_blank"><img src="images/transportation-analytics/highest_sum_delays_stations_2023_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/highest_sum_delays_stations_2023.png" target="_blank"><img src="images/transportation-analytics/highest_sum_delays_stations_2023.png" alt="" align="center"></a></p>
+
+            <p>I found 5 subway stations in common having both the highest number of delays and the greatest total delay times: Bloor, Eglinton, Finch, Kennedy, and Kipling stations.</p>
+
+            <p>My next task was to quantify the basic delay statistics for these high-delay subway stations. To do this, I used <code>GROUP BY</code> to group the data first by subway station then by subway line and <code>CASE</code> to specify the subway line number. I limited the results to the 5 subway stations with the most delays using the <code>IN</code> operator. Lastly, I ordered the results by descending total number of delays: </p>
+
+            <p><a href="images/transportation-analytics/delay_stats_mostdelays_stations_2023_code.png" target="_blank"><img src="images/transportation-analytics/delay_stats_mostdelays_stations_2023_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/delay_stats_mostdelays_stations_2023.png" target="_blank"><img src="images/transportation-analytics/delay_stats_mostdelays_stations_2023.png" alt="" align="center"></a></p>
+
+            <p>For example, Kennedy Station has the greatest total number of delays as well as the highest total delay time with 310 delays for total delay time of 2,553 minutes. The average delay time is 8.24 minutes, ranging from 2 to 167 minutes with a standard deviation of 11.72 minutes. </p>
+
+          <h3> <a id = "MOST_DELAYS"> 4. Identify the most frequent cause of delays. </a> </h3>
+
+          <p>Having determined what subway lines and stations are impacted by the most delays, my next task was to identify the most frequent cause of these delays. To do this, I joined the <code>delays_2023</code> table with the <code>delay_codes</code> table. Since I wanted to keep both the delay information and code desciptions, I used an <code>INNER JOIN</code> with an <code>ON</code> clause that matched the tables on the <code>Code</code> column. While this is functionally equivalent to <code>JOIN</code>, I opted to use <code>INNER JOIN</code> for the sake of clarity.</p>
+
+          <p>While joining these tables, I gave the <code>delays_2023</code> table the alias <code>d23</code> and the <code>delay_codes</code> table the alias <code>code</code>, which I used to specify what table each column should come from. For instance, I used <code>d23.Code</code> to select the delay code from the <code>delays_2023</code> table and <code>codes.Description</code> to select code description from the <code>delay_codes</code> table. Having grouped the data by the delay codes and code descriptions using <code>GROUP BY</code>, I counted the number of codes using <code>COUNT</code> and assigned row numbers based on descreasing number of codes such that those with the most codes were listed first. Lastly, I ordered the results by descreasing number of codes and limited the results to one record to identify the code with the highest number of instances: </p>
+
+            <p><a href="images/transportation-analytics/topcode_code.png" target="_blank"><img src="images/transportation-analytics/topcode_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/topcode.png" target="_blank"><img src="images/transportation-analytics/topcode.png" alt="" align="center"></a></p>
+
+            <p>This revealed that the code with the highest number of instances was SUDP with a total of 5,584 codes, which is described by a disorderly patron. </p>
+
+            <p>Out of curiosity, I wanted to know what subway station was responsible for the most SUDP codes. To do this, I modified the previous code by adding a <code>WHERE</code> clause to restrict the results to MUIS codes. Instead of grouping the data by codes and code descriptions, here I used <code>GROUP BY</code> to group the data by subway stations and lines. Lastly, I replaced the code columns with those describing the subway station and lines where I used <code>CASE</code> to specify the subway line number: </p>
+
+            <p><a href="images/transportation-analytics/topcode_station_code.png" target="_blank"><img src="images/transportation-analytics/topcode_station_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/topcode_station.png" target="_blank"><img src="images/transportation-analytics/topcode_station.png" alt="" align="center"></a></p>
+
+            <p>This revealed that Bloor Station on Line 1 had the highest number of SUDP codes, with a total number of 290 codes.</p>
+
+          <h3> <a id = "TIME_DEPENDENCE"> 5. Determine whether there is a time dependence in delays. </a> </h3>
+
+            <p>An essential aspect of data analysis is characterizing time dependences, so my next task was to identify whether there is a time dependence in subway delays. Previous inspection of the table structures during the <a href="#CLEANING">data cleaning stage</a> revealed that the <code>Time</code> column is of text data type, so I used <code>TIME_FORMAT</code> to reformat this column as a time data type. The <code>Time</code> column was provided as a 24-hour time so I added a secondary time column formatted as a 12-hour time using <code>TIME_FORMAT</code> to accommodate both time preferences.</p>
+
+            <p>With the time properly formatted, I started by investigating the number of delays per hour. I binned the data into hourly bins using <code>GROUP BY</code> and counted the number of delays per hour using <code>COUNT</code>. Lastly, I ordered the results by hour and used <code>RPAD</code> to visualize my results as a histogram: </p>
+
+            <p><a href="images/transportation-analytics/delays_per_hour_2023_code.png" target="_blank"><img src="images/transportation-analytics/delays_per_hour_2023_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/delays_per_hour_2023.png" target="_blank"><img src="images/transportation-analytics/delays_per_hour_2023.png" alt="" align="center"></a></p>
+
+            <p>It is clear that there are multiple peaks in the delays occuring at 8 AM, 5 PM, and 10 PM. </p>
+
+            <p>Next I investigated the number of delays throughout the week. I did this by grouping the data into days of the week contained in the <code>Day</code> column using <code>GROUP BY</code> and counting the number of delays per day using <code>COUNT</code>. I wanted to order these results by days of the week but because the <code>Day</code> column is a text data type, <code>ORDER BY</code> would simply order them using their text characters. To order the days of week properly, I used <code>DATE_FORMAT</code> to first format the <code>Day</code> column as a day data type, which <code>ORDER BY</code> would then order properly. I then visualized my results as a histogram: </p>
+
+            <p><a href="images/transportation-analytics/delays_per_day_2023_code.png" target="_blank"><img src="images/transportation-analytics/delays_per_day_2023_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/delays_per_day_2023.png" target="_blank"><img src="images/transportation-analytics/delays_per_day_2023.png" alt="" align="center"></a></p>
+
+            <p>These results demonstrate that the number of delays are roughly consistent during weekdays, with Sundays having the least number of delays and Wednesdays having the most. </p>
+
+            <p>Lastly, I investigated the number of delays per month. Since there is no month column, I extracted the month name (e.g., 'January') from the <code>Date</code> column using the <code>MONTHNAME</code> function, which I provided the alias <code>Month_Name</code>. This would allow me to group the data into months and count the number of delays per month using the <code>COUNT</code> function. However, I wanted to order the results by calendar months and even with proper formatting, the month names would be ordered using their text characters. To obtain proper calendar month ordering, I used the <code>MONTH</code> function to format the months by number such that January is assigned a number of 1 and December is assigned 12 and provided this new column the alias <code>Month_Num</code>. With two columns for the month, I grouped the data into the month numbers followed by month names and ordered the results by ascending month number. For the last time, I visualized my results as a histogram: </p>
+
+            <p><a href="images/transportation-analytics/delays_per_month_2023_code.png" target="_blank"><img src="images/transportation-analytics/delays_per_month_2023_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/delays_per_month_2023.png" target="_blank"><img src="images/transportation-analytics/delays_per_month_2023.png" alt="" align="center"></a></p>
+
+            <p>These results suggest that, while the number of delays do not vary wildly throughout the year, March has the highest number of delays and January has the lowest. </p>
+
+          <h3> <a id = "DELAY_CHANGE"> 6. Determine whether the occurence of delays appears to be improving since last year. </a> </h3>
+
+            <p>We have learned a lot about subway delays, but do they show signs of improving? To our advantage, we have delay data for 2022 in the <code>delays_2022</code> table. To approach my final task, I compared the total delay times at each subway station between 2022 and 2023 over the common months of Jan - Oct. To join the two tables, I used an <code>INNER JOIN</code> on the station name. Since the <code>delays_2022</code> table covers the entire year, I used a <code>WHERE</code> clause to limit this table to the applicable date range. While the <code>Date</code> column is a text data type, I still used the <code>BETWEEN</code> and <code>AND</code> operators to select a range in dates.</p>
+
+            <p>Next I grouped the data by station, line name, and line number where I used a <code>CASE</code> expression to identify the line number. I then obtained the total delay times for each year using <code>SUM</code> and calculated the percent change between 2022 and 2023 for each row. For the percent change, I rounded the value to an integer number using <code>ROUND</code> and formatted this value as a percentage by adding a percent sign using the <code>CONCAT</code> function. I then assigned row numbers by the total delay times in 2023 using <code>ROW_NUMBER</code> so those with the highest delay times appeared first: </p>
+
+            <p><a href="images/transportation-analytics/sumdelay_change_code.png" target="_blank"><img src="images/transportation-analytics/sumdelay_change_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/sumdelay_change.png" target="_blank"><img src="images/transportation-analytics/sumdelay_change.png" alt="" align="center"></a></p>
+
+            <p>These result suggests that the total delay times is improving for most stations. Kennedy Station, in particular, is responsible for the greatest total delay time and has shown a drastic 38% decrease. However, St. George and Bloor Stations are among those with the most delays and have seen 6% and 7% increases, respectively.</p>
+
+          <h3> <a id = "SUMMARY_TABLE"> 7. Provide a summary of results for all subway stations. </a> </h3>
+
+            <p>My last task was to create a summary of my results. There was one addition that I made to the results already described above, which is a column qualifying the delays for each station to assist the reader. Here I used a <code>CASE</code> expression to classify whether the number of delays are low, medium, or high (<code>Num_Class</code>) and similarly with the total delay time (<code>Sum_Class</code>): </p>
+
+            <p><a href="images/transportation-analytics/summary_2023_code.png" target="_blank"><img src="images/transportation-analytics/summary_2023_code.png" alt="" align="center"></a></p>
+
+            <p><a href="images/transportation-analytics/summary_2023.png" target="_blank" id="SUMMARY_TABLE_FIG"><img src="images/transportation-analytics/summary_2023.png" alt="" align="center" width="100%"></a></p>
+
+            <p> As a reminder, all images can be enlarged by clicking on them. </p>
+
+            <h3> <a id = "TABLEAU"> 8. Design and develop an interactive Tableau dashboard illustrating key insights on the leading causes of delays. </a> </h3>
+
+            <!-- KPIs -->
+          <h3>KPIs: YoY Aggregates and MoM Line Graph</h3>
+
+          <p>The Key Performance Indicators (KPIs) below include, from left to right, the total number of delays along with the average, minimum, maximum, and standard deviation of the delay time. Below this, I included a year-over-year (YoY) metric and a month-over-month (MoM) metric as a simple line graph. The YOY KPIs all show either a positive or zero net change since last year. </p>
+
+          <p><a href="images/subway-delay-causes/KPIs.png" target="_blank"><img src="images/subway-delay-causes/KPIs.png" alt="" align="center" width="100%"></a></p>
+
+          <!-- Stations with the Longest Delays -->
+          <h3>Stations with the Longest Delays: Bar Graph</h3>
+
+          <p>I identified the subway stations with the longest average delay time for each subway line using the bar graph below. I included the top 10 subway stations for Lines 1 and 2 and all 5 subway stations for Line 4. The subway stations with the longest average delay time for Lines 1, 2, and 4 are Summerhill Station, Lansdowne Station, and Bessarion Station, respectively. To identify whether these metrics show improvement since last year, I included the average delay time from 2022 as a gantt bar (i.e., vertical black line). For instance, we can see that the average delay time for the top station of each line has increased since last year. </p>
+
+          <p>To make this dashboard interactive, I used the subway stations and subway lines included in the bar graph as a filter.</p>
+
+          <p><a href="images/subway-delay-causes/top-10-delays.png" target="_blank"><img src="images/subway-delay-causes/top-10-delays.png" alt="" align="center" width="100%"></a></p>
+
+          <!-- Causes of Delays -->
+          <h3><a id="TREEMAP">Primary Causes of Delays: Treemap</a></h3>
+
+          <p>To establish the leading causes of delays, I categorized each delay into those caused by crew, fire, mechanical, miscellaneous, patron, or weather, shown below as a treemap. It is clear that patrons are the leading cause of delays (68% by number) followed by mechanical (14%). </p>
+
+          <p>To make this dashboard even more interactive, I added the treemap as an additional filter.</p>
+          
+          <p><a href="images/subway-delay-causes/causes-of-delays.png" target="_blank"><img src="images/subway-delay-causes/causes-of-delays.png" alt="" align="center" width="100%"></a></p>
+
+          <!-- Change in the Number of Delays Since 2022 -->
+          <h3><a id="CHANGE_LINE_GRAPH">Primary Change in the Number of Delays Since 2022: Line Graph</a></h3>
+
+          <p>To monitor whether delays have improved since last year, I included a line graph showing the change in the number of delays since last year for each month as a percentage. For instance, if a user clicks on "Patron" (the leading cause of delays) in the previous <a href="#TREEMAP">tree map</a>, the line graph below indicates that the monthly number of delays have shown a substantial increase of 41-62% since last year. Not only are patrons the leading cause of delays, but their impact on delays appears to be increasing.</p>
+          
+          <p><a href="images/subway-delay-causes/change-patrons.png" target="_blank"><img src="images/subway-delay-causes/change-patrons.png" alt="" align="center" width="100%"></a></p>
+
+          <p>In constrast, if a user clicks on "Mechanical" (the second-leading cause of delays), the line graph below indicates that the monthly number of delays have shown a 6-37% improvement since last year.</p>
+
+          <p><a href="images/subway-delay-causes/change-mechanical.png" target="_blank"><img src="images/subway-delay-causes/change-mechanical.png" alt="" align="center" width="100%"></a></p>
+
+          <!-- Full Interactive Dashboard -->
+          <h3>Full Interactive Dashboard</h3>
+
+          <p>Click on the image below to expand the view of the dashboard or <a href="https://public.tableau.com/app/profile/astrosica/viz/TTCDelays2022-2023/Dashboard">click here to access the full interactive dashboard.</a></p>
+
+          <p><a href="images/transportation-analytics/tableau-dashboard.png" target="_blank"><img src="images/transportation-analytics/tableau-dashboard.png" alt="" align="center"></a></p>
+
+            <p></p>
+
+          <h3> <a id = "RECOMMENDATIONS"> Recommendations and Future Work. </a> </h3>
+
+          <ol type="1">
+            <li> The Yonge-University Line (Line 1) experiences unusually long delay times, particularly at Finch and Eglinton Stations. Further investigation into the cause of these extended delays could dramatically improve ridership experience. </li>
+            <li> While most subway stations show a decrease in the total delay time between 2022 and 2023, Bloor Station has one of the highest delay times and saw a 19% increase in the total delays. Special attention shoud be given to reducing delays at Bloor Station. </li>
+            <li> The primary focus of delay improvements should include times when delays are the highest. These include during the morning and evening rush hours, on Wednesdays, and throughout March. </li>
+            <li> Disorderly patrons are the number one cause of subway delays with Bloor Station having the largest occurence. The description of 'disorderly patron' is ambiguous and should be refined to help guide future research, with focus on Bloor Station, and improve future campaigns to inform the public on how riders are affecting delays. </li>
+          </ol>
+
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <p></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>
